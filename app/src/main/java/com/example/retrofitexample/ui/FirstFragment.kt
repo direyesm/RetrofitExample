@@ -1,22 +1,22 @@
-package com.example.retrofitexample
+package com.example.retrofitexample.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.retrofitexample.R
 import com.example.retrofitexample.model.Terrain
+import com.example.retrofitexample.viewmodel.MarsViewModel
 import kotlinx.android.synthetic.main.fragment_first.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment(), MarsAdapter.Mars{
+class FirstFragment : Fragment(), MarsAdapter.Mars {
 
     lateinit var mViewModel: MarsViewModel
 
@@ -42,7 +42,7 @@ class FirstFragment : Fragment(), MarsAdapter.Mars{
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
-       mViewModel.exposeLiveDAtaFromServer().observe(viewLifecycleOwner, Observer {
+       mViewModel.exposeLiveDataFromDatabase().observe(viewLifecycleOwner, Observer {
             mAdapter.updateListMars(it)
        })
 
